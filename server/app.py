@@ -12,6 +12,7 @@ def index():
 
 @app.route("/model/<string:model>")
 @app.route("/models/<string:model>")
+@app.route("/cars/<string:model>")
 def show_model(model):
     if model.lower() in car_models:
         return f"Flatiron {model.title()} is in our fleet!"
