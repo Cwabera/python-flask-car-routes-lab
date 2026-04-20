@@ -1,155 +1,133 @@
-# Lab: Car Routes Lab
+# 🚗 Car Routes API (Flask)
+
+## 📌 Description
+
+This project is a simple Flask-based API that simulates a car company database.
+It allows users to view available car models, retrieve details for a specific car, add new cars, and delete existing ones.
+
+The application demonstrates RESTful routing and basic CRUD operations using Flask.
 
 ---
 
-## Overview
+## 🧱 Project Structure
 
-Now it is time for you to build your own routes!
-
-You are building routes for a car company database. You will need to build:
-
-- A **default route** introducing the company
-- A **model-specific route** for requesting information on a car model
-
----
-
-## Tasks
-
-### Task 1: Define the Problem
-
-Build routes for a car company:
-
-- `/` (default route)
-- `/<model>` (route for a specific car model)
+```
+server/
+│
+├── app.py              # Main Flask application
+├── testing/            # Test files
+├── Pipfile             # Dependencies
+├── Pipfile.lock
+├── pytest.ini
+└── README.md
+```
 
 ---
 
-### Task 2: Determine the Design
+## ⚙️ Setup Instructions
 
-#### App Routes:
+### 1. Install dependencies
 
-- `GET /`
-- `GET /<model>`
+```bash
+pipenv install
+```
 
----
+### 2. Activate virtual environment
 
-### Task 3: Develop the Code
+```bash
+pipenv shell
+```
 
-- Initialize Flask
-- Set up `/` route
-- Set up `/<model>` route
+### 3. Run the server
 
----
+```bash
+python app.py
+```
 
-### Task 4: Test and Refine
+The app will run on:
 
-- Debug and test during development using the provided test suite and Flask instance
-
----
-
-### Task 5: Document and Maintain
-
-- Commit as you go, writing meaningful commit messages
-- Push commit history to GitHub periodically and when the lab is complete
+```
+http://127.0.0.1:5000
+```
 
 ---
 
-## Tools and Resources
+## 🚀 API Routes
 
-- **GitHub Repo**: [https://github.com/learn-co-curriculum/python-flask-car-routes-lab](https://github.com/learn-co-curriculum/python-flask-car-routes-lab)
-- **Flask Quickstart**: [https://flask.palletsprojects.com/en/stable/quickstart/](https://flask.palletsprojects.com/en/stable/quickstart/)
+### 1. Home Route
 
----
-
-## Instructions
-
-### Set Up
-
-Before we begin coding, complete the initial setup:
-
-1. **Fork and Clone**
-   - Go to the GitHub repository link.
-   - Fork the repository to your GitHub account.
-   - Clone the forked repository to your local machine.
-
-2. **Open and Run**
-   - Open the project in VSCode.
-   - Run `pipenv install` to install dependencies.
-   - Run `pipenv shell` to open a Python shell instance.
+**GET /**
+Returns a welcome message and available car models.
 
 ---
 
-## Task 1: Define the Problem
+### 2. Get Specific Car
 
-Build the following routes:
+**GET /cars/<model>**
 
-- Default Route: `/`
-- Model Route: `/<model>`
+Example:
 
----
-
-## Task 2: Determine the Design
-
-### App Routes:
-
-- `/`  
-  - Returns: `"Welcome to Flatiron Cars"`
-
-- `/<model>`  
-  - Takes `model` variable from the URL  
-  - Uses the `model` variable to check against an `existing_models` array  
-    - If model exists:  
-      `"Flatiron {model} is in our fleet!"`  
-    - If model doesn't exist:  
-      `"No models called {model} exists in our catalog"`
+```
+/cars/toyota
+```
 
 ---
 
-## Task 3: Develop, Test, and Refine the Code
+### 3. Add a New Car
 
-1. Create a **feature branch**
-2. Build the following:
+**POST /cars**
 
-### `/` Route
+Request Body (JSON):
 
-- Returns: `"Welcome to Flatiron Cars"`
-
-### `/<model>` Route
-
-- Accepts a model name from the URL
-- Uses the model variable to check the `existing_models` array
-  - If found: return `"Flatiron {model} is in our fleet!"`
-  - If not found: return `"No models called {model} exists in our catalog"`
-
-3. Push the feature branch and open a PR on GitHub
-4. Merge into `main`
+```json
+{
+  "brand": "mercedes",
+  "model": "Mercedes C200",
+  "year": 2023,
+  "price": 48000
+}
+```
 
 ---
 
-## Task 4: Document and Maintain
+### 4. Delete a Car
 
-### Best Practices:
+**DELETE /cars/<model>**
 
-- Add comments explaining logic and purpose
-- Clarify code intent for future developers
-- Include a screenshot of completed work in the README
-- Update README to reflect functionality using [https://makeareadme.com](https://makeareadme.com)
-- Delete stale GitHub branches
-- Remove unused or commented-out code
-- Update `.gitignore` to exclude sensitive data (if needed)
+Example:
+
+```
+/cars/mercedes
+```
 
 ---
 
-## Submission
+## 🧠 Concepts Covered
 
-Once all tests are passing and code is pushed to the `main` branch:
-
-- Submit your GitHub repo through **Canvas** using **CodeGrade**
+* Flask routing
+* RESTful APIs
+* CRUD operations
+* JSON handling
+* Request validation
 
 ---
 
-## Grading Criteria
+## ⚠️ Note
 
-- Application passes all test suites
-- `/` route is created and returns correctly
-- `/<model>` route is created and returns correctly
+This project uses an in-memory dictionary as a database.
+Data will reset every time the server restarts.
+
+---
+
+## 🔮 Future Improvements
+
+* Connect to a real database (SQLite/PostgreSQL)
+* Add PUT/PATCH routes for updating cars
+* Add authentication
+* Build a React frontend
+
+---
+
+## 👨‍💻 Author
+
+Built as part of a Flask backend lab.
