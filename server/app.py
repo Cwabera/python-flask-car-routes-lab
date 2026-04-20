@@ -8,7 +8,7 @@ models = ["crossroads", "roadster", "summit", "voyager"]
 def index():
     return "Welcome to Flatiron Cars"
 
-@app.route("/car/<string:model_name>")
+@app.route("/<string:model_name>")
 def model(model_name):
     if model_name.lower() in models:
         return f"Flatiron {model_name.title()} is in our fleet!"
