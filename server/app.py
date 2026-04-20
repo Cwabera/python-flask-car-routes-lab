@@ -4,10 +4,13 @@ app = Flask(__name__)
 
 car_models = ["crossroads", "roadster", "summit", "voyager"]
 
+
 @app.route("/")
 def index():
     return "Welcome to Flatiron Cars"
 
+
+@app.route("/model/<string:model>")
 @app.route("/models/<string:model>")
 def show_model(model):
     if model.lower() in car_models:
